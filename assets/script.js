@@ -1,22 +1,29 @@
+var today = moment();
+$('#currentDay').text(today.format("LLLL"));
 
-$( function() {
+$(document).ready( function(){
+    colChange ();
+    renderText ();
+});
 
-    var state = true;
-    $( ".time-slot" ).on( "click", function() {
-      console.log(this);
-      if ( state ) {
-        $( this ).animate({
-          backgroundColor: "#aa0000",
-          color: "#fff",
-          width: 500
-        }, 1000 );
-      } else {
-        $( this ).animate({
-          backgroundColor: "#fff",
-          color: "#000",
-          width: 240
-        }, 1000 );
-      }
-      state = !state;
-    });
-  } );
+function colChange() {
+    var currentTime = today.hours();
+
+
+// deternine time among the blocks
+        var time = (today.format("hh:mm"));
+
+        if (currentTime > time){
+            $(this).removeClass("future");
+            $(this).removeClass("present");
+            $(this).addClass("past");
+        } else if (currentTime < scheduledTime) {
+            $(this).removeClass("present");
+            $(this).removeClass("past");
+            $(this).addClass("future");
+        } else {
+            $(this).removeClass("present");
+            $(this).removeClass("past");
+            $(this).addClass("future");
+        }
+    }
